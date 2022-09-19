@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "ChromiumUtils": {
+    "ChromiumLauncher": {
       "commandName": "Project",
       "commandLineArgs": "--cookiesPath=\"Z:\\Users\\Melon\\Desktop\\Twitter_cookies\\0_false_Twitter_cookies69684891.txt\" --cookiesStoreVersion=14 --chromePath=\"Z:\\Users\\Melon\\Desktop\\GoogleChromePortable\\App\\Chrome-bin\\chrome.exe\""
     }

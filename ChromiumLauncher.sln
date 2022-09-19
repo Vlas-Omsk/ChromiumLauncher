@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChromiumLauncher", "ChromiumUtils\ChromiumLauncher.csproj", "{1A85228C-F342-4A36-A11A-CE9A97C5FEDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChromiumLauncher", "ChromiumLauncher\ChromiumLauncher.csproj", "{1A85228C-F342-4A36-A11A-CE9A97C5FEDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessArguments", "..\..\ProcessArguments\ProcessArguments\ProcessArguments.csproj", "{BDA00716-2F20-47C8-BFD5-9F4E2DA128AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessArguments", "..\ProcessArguments\ProcessArguments\ProcessArguments.csproj", "{BDA00716-2F20-47C8-BFD5-9F4E2DA128AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
