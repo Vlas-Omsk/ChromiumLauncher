@@ -1,0 +1,38 @@
+﻿INSERT INTO "cookies" (
+	"creation_utc",
+	"host_key",
+	"name",
+	"value",
+	"path",
+	"expires_utc",
+	"is_secure",
+	"is_httponly",
+	"last_access_utc",
+	"has_expires",
+	"is_persistent",
+	"priority",
+	"encrypted_value",
+	"samesite",
+	"source_scheme",
+	"source_port",
+	"is_same_party"
+)
+VALUES (
+	@creationUtc,
+	@hostKey,
+	@name,
+	@value,
+	@path,
+	@expiresUtc,
+	@isSecure,
+	0,
+	@creationUtc,
+	1,
+	1,
+	1,
+	null,
+	-1,
+	2,
+	@sourcePort,
+	0
+)

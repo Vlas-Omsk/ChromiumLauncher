@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChromiumLauncher", "ChromiumUtils\ChromiumLauncher.csproj", "{1A85228C-F342-4A36-A11A-CE9A97C5FEDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessArguments", "..\..\ProcessArguments\ProcessArguments\ProcessArguments.csproj", "{BDA00716-2F20-47C8-BFD5-9F4E2DA128AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A85228C-F342-4A36-A11A-CE9A97C5FEDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A85228C-F342-4A36-A11A-CE9A97C5FEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A85228C-F342-4A36-A11A-CE9A97C5FEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A85228C-F342-4A36-A11A-CE9A97C5FEDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA00716-2F20-47C8-BFD5-9F4E2DA128AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA00716-2F20-47C8-BFD5-9F4E2DA128AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA00716-2F20-47C8-BFD5-9F4E2DA128AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA00716-2F20-47C8-BFD5-9F4E2DA128AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F64A0C5-C68F-4020-8826-7E5455B5991C}
+	EndGlobalSection
+EndGlobal
