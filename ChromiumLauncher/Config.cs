@@ -9,7 +9,7 @@ namespace ChromiumLauncher
         public string ChromePath { get; private set; }
         public string ChromeArgs { get; private set; } = "";
         public string CookiesPath { get; private set; }
-        [RequiredIf("IsCookiesStoreVersionRequired")]
+        [RequiredIf(nameof(IsCookiesStoreVersionRequired))]
         public int CookiesStoreVersion { get; private set; }
 
         private bool IsCookiesStoreVersionRequired()
