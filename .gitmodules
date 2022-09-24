@@ -1,0 +1,3 @@
+[submodule "ProcessArguments"]
+	path = ProcessArguments
+	url = https://github.com/Vlas-Omsk/ProcessArguments
