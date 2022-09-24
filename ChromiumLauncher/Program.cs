@@ -23,7 +23,15 @@ namespace ChromiumLauncher
             {
                 Console.WriteLine("Loading cookies...");
 
-                using var cookieProvider = new CookiesProvider18();
+                var cookieProviderType = Type.GetType("ChromiumLauncher.CookiesProviders.CookiesProvider" + arguments.CookiesStoreVersion);
+
+                if (cookieProviderType == null)
+                {
+                    Console.WriteLine("Not supported cookies store version = " + arguments.CookiesStoreVersion);
+                    return;
+                }
+
+                using var cookieProvider = (CookiesProvider)cookieProviderType.GetConstructor(Type.EmptyTypes).Invoke(null);
                 await cookieProvider.CreateAsync(userDataDirectory);
                 using var cookieReader = new NetscapeCookieReader(arguments.CookiesPath);
                 await cookieProvider.AddRangeAsync(cookieReader.GetAllCookies());
