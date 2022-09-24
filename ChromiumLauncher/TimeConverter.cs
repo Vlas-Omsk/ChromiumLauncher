@@ -16,14 +16,7 @@ namespace ChromiumLauncher
 
         public static DateTime FromUnixTimestamp(long unixTime)
         {
-            try
-            {
-                return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixTime).ToLocalTime();
-            }
-            catch
-            {
-                return DateTime.MinValue;
-            }
+            return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixTime).ToLocalTime();
         }
     }
 }

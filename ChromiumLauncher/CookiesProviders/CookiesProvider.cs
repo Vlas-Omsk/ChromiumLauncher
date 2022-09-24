@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SQLite;
-using System.Net;
 using System.Text;
 
 namespace ChromiumLauncher.CookiesProviders
@@ -33,7 +32,7 @@ namespace ChromiumLauncher.CookiesProviders
             createCommand.ExecuteNonQuery();
         }
 
-        public async Task AddRangeAsync(IEnumerable<Cookie> cookies)
+        public async Task AddRangeAsync(IEnumerable<ChromiumCookie> cookies)
         {
             var insertQueryTask = File.ReadAllTextAsync(InsertQueryPath);
 

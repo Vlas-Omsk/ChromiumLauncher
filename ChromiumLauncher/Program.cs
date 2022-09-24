@@ -2,7 +2,6 @@
 using ProcessArguments;
 using System;
 using System.Diagnostics;
-using System.Net;
 
 namespace ChromiumLauncher
 {
@@ -26,7 +25,8 @@ namespace ChromiumLauncher
 
                 using var cookieProvider = new CookiesProvider18();
                 await cookieProvider.CreateAsync(userDataDirectory);
-                await cookieProvider.AddRangeAsync(ReadCookies(arguments.CookiesPath));
+                using var cookieReader = new NetscapeCookieReader(arguments.CookiesPath);
+                await cookieProvider.AddRangeAsync(cookieReader.GetAllCookies());
 
                 Console.WriteLine("Cookies loaded");
             }
@@ -57,46 +57,6 @@ namespace ChromiumLauncher
 
             Console.WriteLine("User data deleted");
             Console.WriteLine("Exit");
-        }
-
-        private static IEnumerable<Cookie> ReadCookies(string cookiesPath)
-        {
-            using var reader = new StreamReader(cookiesPath);
-            string line;
-
-            while ((line = reader.ReadLine()) != null)
-            {
-                var parts = line.Split("\t");
-
-                var domain = parts[0];
-                // var flag = bool.Parse(parts[1]);
-                var path = parts[2];
-                var secure = bool.Parse(parts[3]);
-                var expiration = TimeConverter.FromUnixTimestamp(long.Parse(parts[4]));
-                var name = parts[5];
-                var value = parts[6];
-
-                Cookie cookie = null;
-
-                try
-                {
-                    cookie = new Cookie()
-                    {
-                        Domain = domain,
-                        Path = path,
-                        Secure = secure,
-                        Expires = expiration,
-                        Name = name,
-                        Value = value
-                    };
-                }
-                catch
-                {
-                }
-
-                if (cookie != null)
-                    yield return cookie;
-            }
         }
 
         private static string GetRandomDirectory()
