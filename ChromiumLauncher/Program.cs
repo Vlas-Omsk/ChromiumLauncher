@@ -12,28 +12,30 @@ namespace ChromiumLauncher
             ArgumentsDeserializer.Deserialize<Config>(args, Start);
         }
 
-        private static async Task Start(Config arguments)
+        private static async Task Start(Config config)
         {
             var userDataDirectory = GetRandomDirectory();
             Console.WriteLine("User data directory = " + userDataDirectory);
 
-            var chromeArgs = $"--user-data-dir=\"{userDataDirectory}\" --bwsi --no-first-run {arguments.ChromeArgs}";
+            var chromeArgs = $"--user-data-dir=\"{userDataDirectory}\" --bwsi --no-first-run {config.ChromeArgs}";
 
-            if (arguments.CookiesPath != null)
+            if (config.CookiesPath != null)
             {
                 Console.WriteLine("Loading cookies...");
 
-                var cookieProviderType = Type.GetType("ChromiumLauncher.CookiesProviders.CookiesProvider" + arguments.CookiesStoreVersion);
+                var cookieProviderType = Type.GetType("ChromiumLauncher.CookiesProviders.CookiesProvider" + config.CookiesStoreVersion);
 
                 if (cookieProviderType == null)
                 {
-                    Console.WriteLine("Not supported cookies store version = " + arguments.CookiesStoreVersion);
+                    Console.WriteLine("Not supported cookies store version = " + config.CookiesStoreVersion);
                     return;
                 }
 
-                using var cookieProvider = (CookiesProvider)cookieProviderType.GetConstructor(Type.EmptyTypes).Invoke(null);
+                using var cookieProvider = (CookiesProvider)cookieProviderType
+                    .GetConstructor(new Type[] { typeof(string) })
+                    .Invoke(new object[] { config.ProfileCookiesRelativeDirectory });
                 await cookieProvider.CreateAsync(userDataDirectory);
-                using var cookieReader = new NetscapeCookieReader(arguments.CookiesPath);
+                using var cookieReader = new NetscapeCookieReader(config.CookiesPath);
                 await cookieProvider.AddRangeAsync(cookieReader.GetAllCookies());
 
                 Console.WriteLine("Cookies loaded");
@@ -41,7 +43,7 @@ namespace ChromiumLauncher
 
             var process = new Process()
             {
-                StartInfo = new ProcessStartInfo(arguments.ChromePath, chromeArgs)
+                StartInfo = new ProcessStartInfo(config.ChromePath, chromeArgs)
             };
 
             process.Start();

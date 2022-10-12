@@ -7,13 +7,18 @@ namespace ChromiumLauncher.CookiesProviders
     internal abstract class CookiesProvider : IDisposable
     {
         private SQLiteConnection _connection;
+        private readonly string _cookiesRelativeDirectory;
+
+        public CookiesProvider(string cookiesRelativeDirectory)
+        {
+            _cookiesRelativeDirectory = cookiesRelativeDirectory;
+        }
 
         ~CookiesProvider()
         {
             Dispose();
         }
 
-        protected abstract string CookiesRelativeDirectory { get; }
         protected abstract string CreateQueryPath { get; }
         protected abstract string InsertQueryPath { get; }
 
@@ -21,7 +26,7 @@ namespace ChromiumLauncher.CookiesProviders
         {
             var createQueryTask = File.ReadAllTextAsync(CreateQueryPath);
 
-            var cookiesDirectory = Path.Combine(userDataDirectory, CookiesRelativeDirectory);
+            var cookiesDirectory = Path.Combine(userDataDirectory, _cookiesRelativeDirectory);
 
             Directory.CreateDirectory(cookiesDirectory);
 

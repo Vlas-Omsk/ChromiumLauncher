@@ -9,6 +9,7 @@ namespace ChromiumLauncher
         public string ChromePath { get; private set; }
         public string ChromeArgs { get; private set; } = "";
         public string CookiesPath { get; private set; }
+        public string ProfileCookiesRelativeDirectory { get; private set; } = "Default";
         [RequiredIf(nameof(IsCookiesStoreVersionRequired))]
         public int CookiesStoreVersion { get; private set; }
 
